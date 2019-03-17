@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# A short mac reminder when focusing on screen works
+
 from Foundation import NSUserNotification
 from Foundation import NSUserNotificationCenter
 from Foundation import NSUserNotificationDefaultSoundName
@@ -9,11 +12,13 @@ import time
 
 def main():
     parser = argparse.ArgumentParser(description=' -t TITLE -m MESSAGE')
-    parser.add_argument('-t', '--title', action='store', default='通知', type=lambda s: unicode(s, 'utf8'))
-    parser.add_argument('-m', '--message', action='store', default='...', type=lambda s: unicode(s, 'utf8'))
+    parser.add_argument('-t', '--title', action='store',
+                        default='通知', type=lambda s: unicode(s, 'utf8'))
+    parser.add_argument('-m', '--message', action='store',
+                        default='...', type=lambda s: unicode(s, 'utf8'))
     parser.add_argument('-d', '--delay', action='store', default=0)
     parser.add_argument('--no-sound', action='store_false', default=True,
-        dest='sound')
+                        dest='sound')
 
     args = parser.parse_args()
     time.sleep(float(args.delay) * 60)
@@ -23,10 +28,12 @@ def main():
     if args.sound:
         notification.setSoundName_(NSUserNotificationDefaultSoundName)
 
+    print "test"
+
     center = NSUserNotificationCenter.defaultUserNotificationCenter()
     center.deliverNotification_(notification)
+    # notification.
 
 
 if __name__ == '__main__':
     main()
-
